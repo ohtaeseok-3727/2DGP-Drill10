@@ -16,13 +16,15 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 5
 
 class Bird:
+    image = None
     def __init__(self, x, y):
         self.x, self.y = 10+x, 400 + y
-        self.image = load_image('bird_animation.png')
         self.frame = 0
         self.action_depth = 0
         self.action_count = 0
         self.dir = 1
+        if Bird.image == None:
+            Bird.image = load_image('bird_animation.png')
     def enter(self):
         pass
     def exit(self):
@@ -48,7 +50,7 @@ class Bird:
 
     def draw(self):
         if self.dir == 1:
-            self.image.clip_draw(int(self.frame)* 180, int(self.action_depth)*167, 180, 167, self.x, self.y, 40, 40)
+            Bird.image.clip_draw(int(self.frame)* 180, int(self.action_depth)*167, 180, 167, self.x, self.y, 40, 40)
         else:
-            self.image.clip_composite_draw(int(self.frame) * 180, int(self.action_depth)*167, 180, 167, 0, 'h', self.x, self.y, 40, 40)
+            Bird.image.clip_composite_draw(int(self.frame) * 180, int(self.action_depth)*167, 180, 167, 0, 'h', self.x, self.y, 40, 40)
         pass
