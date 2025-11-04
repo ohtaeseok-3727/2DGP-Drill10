@@ -38,6 +38,11 @@ class Bird:
                 self.action_depth += 1
                 self.frame = 0
 
+                self.x += self.dir * RUN_SPEED_PPS * game_framework.frame_time
+                if self.x > 800:
+                    self.dir = -1
+                elif self.x < 0:
+                    self.dir = 1
         pass
     def draw(self):
         if self.dir == 1:
