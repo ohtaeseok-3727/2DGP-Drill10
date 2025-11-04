@@ -1,4 +1,5 @@
 from pico2d import load_image
+import game_framework
 
 #새의 크기 : 60x60
 #새의 속도 : 시속 100km
@@ -19,11 +20,16 @@ class Bird:
         self.x, self.y = 0, 400
         self.image = load_image('bird_animation.png')
         self.frame = 0
+        self.action_depth = 0
     def enter(self):
         pass
     def exit(self):
         pass
     def do(self):
+        if self.action_depth == 2:
+            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        else:
+            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
         pass
     def draw(self):
         pass
