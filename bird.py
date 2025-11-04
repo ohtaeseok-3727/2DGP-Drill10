@@ -6,7 +6,7 @@ import game_framework
 #새 프레임 개수 : 14(5x3)
 
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
-RUN_SPEED_KMPH = 20.0  # Km / Hour
+RUN_SPEED_KMPH = 100.0  # Km / Hour
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -40,7 +40,7 @@ class Bird:
                 self.frame = 0
 
         self.x += self.dir * RUN_SPEED_PPS * game_framework.frame_time
-        if self.x > 800:
+        if self.x > 1600:
             self.dir = -1
         elif self.x < 0:
             self.dir = 1
