@@ -44,9 +44,12 @@ class Bird:
                 elif self.x < 0:
                     self.dir = 1
         pass
+    def update(self):
+        pass
+
     def draw(self):
         if self.dir == 1:
-            self.image.clip_draw(int(self.frame * 186.6), (self.action_depth * 168.6), 187, 169, self.x, self.y, 20, 20)
+            self.image.clip_draw(int(self.frame * 186.6), int(self.action_depth * 168.6), 187, 169, self.x, self.y, 20, 20)
         else:
-            self.image.clip_composite_draw(int(self.frame * 186.6), (self.action_depth * 168.6), 187, 169, 0, 'h', self.x, self.y, 20, 20)
+            self.image.clip_composite_draw(int(self.frame * 186.6), int(self.action_depth * 168.6), 187, 169, 0, 'h', self.x, self.y, 20, 20)
         pass
