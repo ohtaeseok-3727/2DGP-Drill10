@@ -21,6 +21,8 @@ class Bird:
         self.image = load_image('bird_animation.png')
         self.frame = 0
         self.action_depth = 0
+        self.action_count = 0
+        self.dir = 1
     def enter(self):
         pass
     def exit(self):
@@ -28,8 +30,18 @@ class Bird:
     def do(self):
         if self.action_depth == 2:
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+            if self.frame == 3:
+                self.action_depth = 0
         else:
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+            if self.frame == 4:
+                self.action_depth += 1
+                self.frame = 0
+
         pass
     def draw(self):
+        if self.dir == 1:
+            self.image.clip_draw(int(self.frame * 186.6), (self.action_depth * 168.6), 187, 169, self.x, self.y, 20, 20)
+        else:
+            self.image.clip_composite_draw(int(self.frame * 186.6), (self.action_depth * 168.6), 187, 169, 0, 'h', self.x, self.y, 20, 20)
         pass
